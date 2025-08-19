@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+@dump($portfolios)
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <div class="container">
             <ol class="carousel-indicators">
@@ -389,60 +390,44 @@
                 <!--// end row -->
 
                 <!-- Masonry Grid -->
-                <div id="gallery">
-                    <a href="https://picsum.photos/1280/720">
-                        <img src="https://picsum.photos/1280/720" alt="Foto">
-                    </a>
-                    <a href="https://picsum.photos/1280/720">
-                        <img src="https://picsum.photos/1280/720" alt="Foto">
-                    </a>
-                    <a href="https://picsum.photos/1280/720">
-                        <img src="https://picsum.photos/1280/720" alt="Foto">
-                    </a>
-                    <a href="https://picsum.photos/720/1280">
-                        <img src="https://picsum.photos/720/1280" alt="Foto">
-                    </a>
-                    <a href="https://picsum.photos/1280/720">
-                        <img src="https://picsum.photos/1280/720" alt="Foto">
-                    </a>
-                    <a href="https://picsum.photos/1280/720">
-                        <img src="https://picsum.photos/1280/720" alt="Foto">
-                    </a>
-                     <a href="https://picsum.photos/720/1280">
-                        <img src="https://picsum.photos/720/1280" alt="Foto">
-                    </a>
+                <div id="gallery" class="grid grid-cols-3 gap-4">
+                    @foreach ($portfolios as $portfolio)
+                        <a href="javascript:void(0);" data-target="#popup-{{ $portfolio->id }}" class="open-popup">
+                            <img src="{{ Storage::url($portfolio->thumbnail) }}" alt="{{ $portfolio->title }}" class="w-full rounded shadow">
+                        </a>
+                    @endforeach
                 </div>
-                <!-- Modal -->
-                <div class="work-popup-overlay" id="popup">
-                    <div class="work-popup-content">
-                        <a href="javascript:void(0);" class="work-popup-close" id="popup-close">Hide</a>
-                        <div class="margin-b-30">
-                        <h3 class="margin-b-5">Art Of Coding</h3>
-                        <span>Clean &amp; Minimalistic Design</span>
-                        </div>
-                        <div class="row">
-                        <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                            <div class="margin-t-10 sm-margin-t-0">
-                            <p>Duis aute irure dolor in reprehenderit...</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            <ul class="list-inline work-popup-tag">
-                                <li><a href="#">Strategy,</a></li>
-                                <li><a href="#">Implementation,</a></li>
-                                <li><a href="#">Credentials</a></li>
-                            </ul>
+                <!-- Modal Section -->
+                @foreach ($portfolios as $portfolio)
+                    <div class="work-popup-overlay" id="popup-{{ $portfolio->id }}">
+                        <div class="work-popup-content">
+                            <a href="javascript:void(0);" class="work-popup-close">Hide</a>
+                            <div class="margin-b-30">
+                                <h3 class="margin-b-5">{{ $portfolio->title }}</h3>
+                                <span>{{ $portfolio->subtitle }}</span>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="margin-t-10 sm-margin-t-0">
-                            <p><strong>Project Manager:</strong> Boris Becker</p>
-                            <p><strong>Executive:</strong> Heike Macatsch</p>
-                            <p><strong>Architect:</strong> Oliver Pocher</p>
-                            <p><strong>Client:</strong> FairTech</p>
+                            <div class="row">
+                                <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+                                    <div class="margin-t-10 sm-margin-t-0">
+                                        <p>{{ $portfolio->description }}</p>
+                                        <ul class="list-inline work-popup-tag">
+                                            @foreach ($portfolio->tags as $tag)
+                                                <li><a href="#">{{ $tag }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="margin-t-10 sm-margin-t-0">
+                                        <p><strong>Project Manager:</strong> {{ $portfolio->pm }}</p>
+                                        <p><strong>IT Specialist:</strong> {{ $portfolio->it_specialist }}</p>
+                                        <p><strong>Client:</strong> {{ $portfolio->client }}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
                 <!-- End Masonry Grid -->
 
                 <!-- Clients -->

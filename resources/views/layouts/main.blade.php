@@ -176,24 +176,25 @@
     </script>
 
     <script>
-        // ambil semua gambar di gallery
-        document.querySelectorAll('#gallery a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('popup').style.display = 'flex';
-        });
-        });
-
-        // tombol close
-        document.getElementById('popup-close').addEventListener('click', function() {
-        document.getElementById('popup').style.display = 'none';
+        document.querySelectorAll('.open-popup').forEach(item => {
+            item.addEventListener('click', function() {
+                let target = this.getAttribute('data-target');
+                document.querySelector(target).style.display = 'flex';
+            });
         });
 
-        // klik di luar modal untuk close
-        document.getElementById('popup').addEventListener('click', function(e) {
-        if (e.target.id === 'popup') {
-            document.getElementById('popup').style.display = 'none';
-        }
+        document.querySelectorAll('.work-popup-close').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.work-popup-overlay').style.display = 'none';
+            });
+        });
+
+        document.querySelectorAll('.work-popup-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.style.display = 'none';
+                }
+            });
         });
     </script>
 
