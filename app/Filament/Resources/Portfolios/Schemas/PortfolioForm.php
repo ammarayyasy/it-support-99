@@ -25,13 +25,13 @@ class PortfolioForm
                     ->directory('portfolios')
                     ->image()
                     ->disk('public'),
-                TextInput::make('pm'),
+                MultiSelect::make('tags')
+                        ->multiple()
+                        ->relationship('tags', 'name')
+                        ->preload(),
                 TextInput::make('it_specialist'),
                 TextInput::make('client'),
-                MultiSelect::make('tags')
-                    ->multiple()
-                    ->relationship('tags', 'name')
-                    ->preload(),
+                TextInput::make('pm'),
             ]);
     }
 }
