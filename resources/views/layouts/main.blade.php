@@ -30,38 +30,45 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
 
     <style>
+        #gallery {
+            margin: auto;
+        }
+        .jg-entry img {
+            border-radius: 6px;
+        }
+
         /* Overlay styling */
         .work-popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
 
         /* Modal content styling */
         .work-popup-content {
-        background: #fff;
-        padding: 20px;
-        max-width: 800px;
-        width: 90%;
-        max-height: 90%;
-        overflow-y: auto;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            background: #fff;
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
 
         .work-popup-close {
-        display: inline-block;
-        margin-bottom: 10px;
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
         }
     </style>
 </head>

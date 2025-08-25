@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-@dump($portfolios)
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <div class="container">
             <ol class="carousel-indicators">
@@ -412,7 +411,7 @@
                                         <p>{{ $portfolio->description }}</p>
                                         <ul class="list-inline work-popup-tag">
                                             @foreach ($portfolio->tags as $tag)
-                                                <li><a href="#">{{ $tag }}</a></li>
+                                                <li><a href="#">{{ $tag->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
